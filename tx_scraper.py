@@ -7,7 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=7f6e044525f545eaac2fd4e153fb832e'
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=ff7b5a8efc0345a0b3a056d2f869128c'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -55,14 +55,14 @@ def tx_extractor (
 
 
 
-def depth3_list(
+def depth2_list(
     data: Dict,
     all_tx: list,
 ) -> list:
     """
     Takes as argument the list of transactions from tx_extractor function and returns it recursively with depth 3
     """
-    end_tx =  []
+    
     final_tx = []
     surpassed = []
     for tx in all_tx:
@@ -70,37 +70,51 @@ def depth3_list(
 
     for tx in all_tx:
         if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
-            print('done1')
+            print(tx['sender'])
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
             new_txs = tx_extractor(new_data)
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
-            print('done2')
+            print(tx['receiver'])
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
             new_txs = tx_extractor(new_data)
             for tx in new_txs:
                 final_tx.append(tx)
-    for tx in final_tx:
-        end_tx.append(tx)
-    for tx in final_tx:
-        if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
-            print('done3')
-            surpassed.append(tx['sender'])
-            new_data = address_scraper(tx['sender'])
-            new_txs = tx_extractor(new_data)
-            for tx in new_txs:
-                final_tx.append(tx)
-        if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
-            print('done4')
-            surpassed.append(tx['receiver'])
-            new_data = address_scraper(tx['receiver'])
-            new_txs = tx_extractor(new_data)
-            for tx in new_txs:
-                final_tx.append(tx)
-
-    
     return final_tx
+
+
+def depth3_list(
+    data: Dict,
+    all_tx: list,
+
+) -> list:
+    """
+    Takes as argument the list of transactions from tx_extractor function and returns it recursively with depth 3
+    """
+    
+    final_tx = []
+    surpassed = []
+    for tx in all_tx:
+        final_tx.append(tx)
+
+    for tx in all_tx:
+        if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
+            print(tx['sender'])
+            surpassed.append(tx['sender'])
+            new_data = address_scraper(tx['sender'])
+            new_txs = tx_extractor(new_data)
+            for tx in new_txs:
+                final_tx.append(tx)
+        if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
+            print(tx['receiver'])
+            surpassed.append(tx['receiver'])
+            new_data = address_scraper(tx['receiver'])
+            new_txs = tx_extractor(new_data)
+            for tx in new_txs:
+                final_tx.append(tx)
+    return final_tx
+    
 
