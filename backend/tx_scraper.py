@@ -1,6 +1,6 @@
 from typing import Dict
 import urllib.request, json
-
+import time
 def address_scraper(
     crypto_addr,
 ) -> Dict:
@@ -8,11 +8,11 @@ def address_scraper(
     Extracts the wallet from the BlockCypher API
     """
     if crypto_addr[:2] == '0x':
-        url = "https://api.blockcypher.com/v1/eth/main/addrs/" +crypto_addr
+        url = "https://api.blockcypher.com/v1/eth/main/addrs/" +crypto_addr + '/full?limit=50'
         
         
     else:
-        url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr
+        url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=50'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -30,8 +30,7 @@ def basic_extractor(
 
 
 #Testing
-data = address_scraper("0xc711df3edca3cccc375c18273780aa7dcd72f6e7")
-print(basic_extractor(data))
+
 
 
 
@@ -42,27 +41,26 @@ def tx_extractor (
     """
     Returns list of transactions
     tx_data format:
-    in/out: Whether transaction was sent or received
+    
     """
 
     all_tx = []
     
-    tx_arr = data["txrefs"]
+    tx_arr = data["txs"]
     for tx in tx_arr:
         tx_data = {}
-        if tx["tx_input_n"] == "0":
-            tx_data["mode"] = "in"
-        else:
-             tx_data["mode"] = "out"
-        tx_data['hash'] = tx["tx_hash"]
-        tx_data['value'] = tx['value']
-        url = "https://api.blockcypher.com/v1/eth/main/txs/" + tx_data["hash"]
-        url = "https://api.blockcypher.com/v1/bth/main/txs/" + tx_data["hash"]
-
-
-        all_tx.append(tx_data)
-
+        if tx['total'] > 0:
+            
+            tx_data['hash'] = tx["hash"]
+            tx_data['value'] = tx['total']
+            tx_data['sender'] = tx["inputs"][0]["addresses"][0]
+            tx_data['receiver'] = tx["outputs"][0]["addresses"][0]
+            all_tx.append(tx_data)
+        
+    return all_tx
 
 
 
-    
+data = address_scraper("0xc711df3edca3cccc375c18273780aa7dcd72f6e7")
+print(basic_extractor(data))
+print(tx_extractor(data))
