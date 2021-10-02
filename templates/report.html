@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="./design.css">
+</head>
+<body>
+    <div id="header">
+        <div id="logo">CryptoScore</div>
+        <div class="navigation">
+            <a href="./home.html">Home</a> &nbsp;
+            <a href="./report.html">Report</a> &nbsp;
+            <a href="./API.html">API</a> &nbsp;
+        </div>
+        <div id="header-button-div">
+            <button id="button-style-1" type="button" onclick="alert('Button is working.')">Create Credit Score</button>
+        </div>
+    </div>
+
+    <div id="report-div">
+        <div>
+        <h1>Report Wallet</h1>
+        <form id="report-wallet-form">
+            <label id="form-label">Wallet Address:</label>
+            <br><br>
+            <input id="address-input-field" type="text" name="wallet-address"
+            placeholder="ex: 231243239489asd89">
+            <br><br>
+            <label id="form-label">Reason for Reporting:</label>
+            <br><br>
+            <select name="reason" id="reason">
+                <option hidden="">Choose Option</option>
+                <option value="sus">Suspected Fraudulent Activity</option>
+                <option value="scam">Scam</option>
+                <option value="Other">Other</option>
+            </select>
+            <br><br>
+            <label id="form-label">If Other, Give Description Below:</label>
+            <br><br>
+            <input id="description-input-field" type="text" name="description"
+            placeholder="ex: harrassment">
+            <br><br>
+            <input id="report-button" type="submit" value="Submit Report">
+        </form>
+        </div>
+    </div>
+    
+</body>
+</html>
