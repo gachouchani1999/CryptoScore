@@ -7,7 +7,11 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
+<<<<<<< HEAD
     url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=ff7b5a8efc0345a0b3a056d2f869128c'
+=======
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=dd7ab7e82c07483a897166fb3510396a'
+>>>>>>> 87a112fae331c387cdca067f2c2313edf7cfa221
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -73,14 +77,20 @@ def depth2_list(
             print(tx['sender'])
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
             print(tx['receiver'])
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
     return final_tx
@@ -105,14 +115,17 @@ def depth3_list(
             print(tx['sender'])
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
             print(tx['receiver'])
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
-            new_txs = tx_extractor(new_data)
+            
             for tx in new_txs:
                 final_tx.append(tx)
     return final_tx
