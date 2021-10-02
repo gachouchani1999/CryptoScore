@@ -7,7 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=50'
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -63,22 +63,22 @@ def depth3_list(
     Takes as argument the list of transactions from tx_extractor function and returns it recursively with depth 3
     """
     final_tx = []
-    final_tx.append(all_tx)
+    surpassed = []
     for tx in all_tx:
-        if tx['sender'] != data['address']:
-            print('done 1')
+        final_tx.append(tx)
+
+    for tx in all_tx:
+        if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
+            surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
             new_txs = tx_extractor(new_data)
             for tx in new_txs:
                 final_tx.append(tx)
-        if tx['receiver'] != data['address']:
-            print('done2')
+        if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
+            surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
             new_txs = tx_extractor(new_data)
             for tx in new_txs:
                 final_tx.append(tx)
     return final_tx
 
-data = address_scraper("bc1qa5wkgaew2dkv56kfvj49j0av5nml45x9ek9hz6")
-tx_lst = tx_extractor(data)
-tx_lst3 = depth3_list(data,tx_lst)

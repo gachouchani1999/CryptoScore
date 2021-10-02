@@ -18,9 +18,10 @@ def create_Graph(
             Graph[tx["sender"]] = {tx["receiver"]: 1}
     return Graph
 
-data = tx_scraper.address_scraper('0xbe0eb53f46cd790cd13851d5eff43d12404d33e8')
+data = tx_scraper.address_scraper('bc1quctskkzeh0kfd93hrzns0jwg3gj35fvneqspr43c4wfxddwnx2qq5yeutp')
 tx_list = tx_scraper.tx_extractor(data)
-g = create_Graph(tx_list)
+tx_lst3 = tx_scraper.depth3_list(data,tx_list)
+g = create_Graph(tx_lst3)
 print(g)
 
 
