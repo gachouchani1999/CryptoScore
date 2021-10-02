@@ -7,7 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=7f6e044525f545eaac2fd4e153fb832e'
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=dd7ab7e82c07483a897166fb3510396a'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -73,14 +73,20 @@ def depth3_list(
             print('done1')
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
             print('done2')
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
     for tx in final_tx:
@@ -90,14 +96,17 @@ def depth3_list(
             print('done3')
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
-            new_txs = tx_extractor(new_data)
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
             print('done4')
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
-            new_txs = tx_extractor(new_data)
+            
             for tx in new_txs:
                 final_tx.append(tx)
 
