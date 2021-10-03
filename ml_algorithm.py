@@ -15,5 +15,8 @@ def ml_model(criteria_arr):
     X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.33, random_state = 21)
     model.fit(X_train,y_train)
 
-    y_pred = model.predict(criteria_arr)
-    return y_pred
+    y_pred = model.predict([criteria_arr])
+    if y_pred == 1:
+        return "<h1>The predicted score is greater than 50, which means that it is a safe address to interact with.</h1>"
+    else:
+        return "<h1>BEWARE! The predicted score is less than 50, which means that it is NOT a safe address to interact with and the algorithm has interecepted malicious transactions.</h1>"
