@@ -30,3 +30,5 @@ We learned that sometimes using APIs have its limitations and that outside of th
 Also we have learnt that sometimes if the average runtime for an algorithm is good does not mean we need to use it if our data is a best case scenario, we can just use the best case.
 ## What's next for CryptoScore
 The next step is to create deep learning algorithms using Neural Networks and PyTorch for the algorithms to run a graph of depth 5 to 10 instead of a depth 3 which allows the algorithm to find more fraudulent activity.
+## Limits
+Due to the limits of the API BlockCypher if you run the code and an error occurs then the API reached a maximum limit of requests (which is a very low limit) then go visit BlockCypher to get an API and replace it in tx_scraper.py to test the code yourselves. In a production environment, we would pay for way increased limits to use.
