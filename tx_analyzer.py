@@ -87,12 +87,14 @@ def analysis_criteria(
             analysis_arr[6] = 1
         elif sum == values[len(values)-2]:
             analysis_arr[6] = 1
-
-    analysis_arr[7] = basic_data[1]/basic_data[0]
+    try:
+        analysis_arr[7] = basic_data[1]/basic_data[0]
+    except:
+        analysis_arr[7] = 0
 
     return analysis_arr
 
-print(analysis_criteria(g,tx_lst3,basic_data))
+
 
     
 

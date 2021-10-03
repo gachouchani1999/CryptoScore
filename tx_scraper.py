@@ -70,7 +70,6 @@ def depth2_list(
 
     for tx in all_tx:
         if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
-            print(tx['sender'])
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
             try:
@@ -80,7 +79,6 @@ def depth2_list(
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
-            print(tx['receiver'])
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
             try:
@@ -108,7 +106,6 @@ def depth3_list(
 
     for tx in all_tx:
         if tx['sender'] != data['address'] and tx['sender'] not in surpassed :
-            print(tx['sender'])
             surpassed.append(tx['sender'])
             new_data = address_scraper(tx['sender'])
             try:
@@ -118,7 +115,6 @@ def depth3_list(
             for tx in new_txs:
                 final_tx.append(tx)
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
-            print(tx['receiver'])
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
             
