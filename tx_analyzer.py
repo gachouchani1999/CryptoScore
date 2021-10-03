@@ -63,14 +63,19 @@ def analysis_criteria(
     for dic in g.values():
         total_receivers += len(dic)
 
-    analysis_arr[3] = (total_receivers/analysis_arr[2])
+    try:
+        analysis_arr[3] = (total_receivers/analysis_arr[2])
+    except:
+        analysis_arr[3] = 0
 
     total_weights = 0
     for receiver in g.values():
         for value in receiver.values():
             total_weights += value
-        
-    analysis_arr[4] = (total_weights/analysis_arr[3])
+    try:   
+        analysis_arr[4] = (total_weights/analysis_arr[3])
+    except:
+        analysis_arr[4] =0
 
     for sender in g: 
         for receiver in g.values():

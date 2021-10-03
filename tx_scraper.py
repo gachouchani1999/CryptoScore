@@ -7,7 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=dd7ab7e82c07483a897166fb3510396a'
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=21afa05bf02940c595fb7038550cd371'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -117,7 +117,10 @@ def depth3_list(
         if tx['receiver'] != data['address'] and tx['receiver'] not in surpassed:
             surpassed.append(tx['receiver'])
             new_data = address_scraper(tx['receiver'])
-            
+            try:
+                new_txs = tx_extractor(new_data)
+            except:
+                pass
             for tx in new_txs:
                 final_tx.append(tx)
     return final_tx
