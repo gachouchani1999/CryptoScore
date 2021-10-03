@@ -46,7 +46,6 @@ def analysis_criteria(
     [5]: Is there a cycle in blockchain transactions? 1 if YES / 0 if NO
     [6]: Is there a sum of values sent in the blockchain that sum up to another value?
     [7]: Total amount sent/ Total amount received
-
     """
     analysis_arr = [0,0,0,0,0,0,0,0] #7 criteria
     for sender in g:
@@ -87,25 +86,9 @@ def analysis_criteria(
             analysis_arr[6] = 1
         elif sum == values[len(values)-2]:
             analysis_arr[6] = 1
-    try:
-        analysis_arr[7] = basic_data[1]/basic_data[0]
-    except:
-        analysis_arr[7] = 0
+
+    analysis_arr[7] = basic_data[1]/basic_data[0]
 
     return analysis_arr
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-    
-
+print(analysis_criteria(g,tx_lst3,basic_data))

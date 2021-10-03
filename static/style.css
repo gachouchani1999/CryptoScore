@@ -1,0 +1,278 @@
+body {
+    background-color: #1F2125 !important ; 
+    font-family: Arial, Helvetica, sans-serif ;
+    padding: 10px ;
+    margin: 20px ;
+}
+ 
+#header {
+    margin: 20px;
+    display: flex ;
+    justify-content: center;
+    margin-right:5%;
+}
+#header_report{
+    margin: 20px;
+    display: flex ;
+    justify-content: center;
+   
+
+}
+
+.navigation {
+    width: 40% ;
+    overflow: hidden ;
+    text-align: center ;
+    background-color: #444CEC ;
+    padding: 14px ;
+    border-radius: 15px ;
+}
+
+.navigation a {
+    text-align: center ;
+    padding: 14px 16px ;
+    text-decoration: none ;
+    font-size: 16px ;
+    color: white ;
+}
+
+.navigation a:hover {
+    background-color: #B67BFF ;
+    color: black ;
+    border-radius: 15px ;
+    text-decoration: none ;
+}
+
+#logo {
+    color: white ;
+    width: 10% ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    font-weight: bold ;
+}
+
+#header-button-div {
+    width: 30% ;
+}
+
+#button-style-1 {
+    display: inline-block ;
+    padding: 10px ;
+    text-align: center ;
+    transition: 0.5s ;
+    background-size: 200% auto ;
+    color: #FFF ;
+    width: 150px ;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) ;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1) ;
+    border-radius: 25px ; 
+    background-image: linear-gradient(to right, #6776FF 0%, #943FFF 51%, #B67BFF 100%) ;
+}
+
+#header-button:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) ;
+    background-position: right center ; 
+    text-decoration: none ;
+}
+
+#home-row {
+    margin: 20px;
+    display: flex ;
+    justify-content: space-around;
+}
+
+#home-r1-col-1-header {
+    font-size: 40pt ;
+    color: #555555 ;
+    text-shadow: 7px 7px 7px black;
+}
+
+#home-p {
+    color: white ;
+}   
+
+#home-col{
+    width: 40% ;
+}
+
+#home-col-png {
+    width: 40% ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    margin-right:20%;
+}
+
+#home-header {
+    color: white ;
+    font-size: 25pt ;
+}
+
+#home-r2-col-2-h2 {
+    background: linear-gradient(to right, #6776FF 0%, #943FFF 51%, #B67BFF 100%) ;
+    background-clip: text ;
+    -webkit-background-clip: text ;
+    -moz-background-clip: text ;
+    -moz-text-fill-color: transparent ;
+    -webkit-text-fill-color: transparent ;
+    display: inline-block ;
+}
+
+#home-r2-p {
+    color: #555555 ;
+}
+
+#telegram-button {
+    border-radius: 25px ;
+    background-color: white ;
+    padding: 10px ;
+    text-align: center ;
+    width: 150px ;
+}
+
+#home-row-3 {
+    background-color: #23252A ;
+    padding: 20px ;
+    margin: 40px;
+    display: flex ;
+    justify-content: space-around;
+    border-radius: 15px;
+}
+
+#button-style-2 {
+    display: inline-block ;
+    padding: 10px ;
+    text-align: center ;
+    color: #FFF ;
+    width: 150px ;
+    border-radius: 25px ; 
+    background-color: #1F2125 ; 
+    border: solid 2px white ;
+}
+
+#credit-score-div {
+    margin: 20px;
+    padding: 20px ;
+    width: 90% ;
+    text-align: center ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+#credit-score-div h1 {
+    margin-bottom: 0px ;
+    font-size: 35pt ;
+    color: white ;
+    text-shadow: 7px 7px 7px black;
+}
+
+#credit-score-div h6 {
+    margin-top: 5px ;
+    color: white ;
+}
+
+#wallet-address-form {
+    margin: 10px ;
+    background-color: #2E3137 ;
+    border-radius: 10px ;
+    padding: 20px ;
+}
+
+#form-label {
+    padding-top: 10px ;
+    padding-left: 20px ;
+    float: left ;
+    color: white ;
+    font-weight: bold ;
+}
+
+#address-input-field {
+    background-color: #1C1E21;
+    color: white ;
+    /* width: 350px ; */
+    width: 90% ;
+    padding: 10px ;
+    border-radius: 10px ;
+
+}
+
+#submit-button {
+    margin: 30px ;
+    background-color: #3A3FB4;
+    color: white ;
+    width: 200px ;
+    border-radius: 10px ;
+    padding: 10px ;
+    font-size: 8pt ;
+}
+
+.carousel-inner {
+    background-color: #1F2125 ;
+}
+
+#API-1 {
+    border-radius: 25px ;
+}
+
+#report-div {
+    margin: 20px;
+    padding: 20px ;
+    width: 90% ;
+    text-align: center ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+}
+
+#report-div h1 {
+    color: white ;
+    font-size: 35pt ;
+    text-shadow: 7px 7px 7px black;
+}
+
+#report-wallet-form {
+    margin: 10px ;
+    background-color: #2E3137 ;
+    border-radius: 10px ;
+    padding: 50px ;
+}
+
+#reason {
+    background-color: #1C1E21;
+    color: white ;
+    /* width: 350px ; */
+    width: 100% ;
+    padding: 10px ;
+    border-radius: 10px ;
+}
+
+#description-input-field {
+    background-color: #1C1E21;
+    color: white ;
+    /* width: 350px ; */
+    width: 90% ;
+    padding: 10px ;
+    border-radius: 10px ;
+}
+
+#report-button {
+    background-image: linear-gradient(to right, #6776FF 0%, #943FFF 51%, #B67BFF 100%) ;
+    margin: 30px ;
+    color: white ;
+    width: 200px ;
+    border-radius: 10px ;
+    padding: 10px ;
+    font-size: 8pt ;
+}
+
+/* select option:hover{
+    background-color: #4649EC ;
+} */
+
+#under-construction {
+    margin: 50px;
+    display: flex ;
+    justify-content: space-around;
+}

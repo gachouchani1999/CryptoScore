@@ -5,22 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="./design.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="header">
-        <div id="logo">CryptoScore</div>
+        
         <div class="navigation">
-            <a href="./home.html">Home</a> &nbsp;
-            <a href="./report.html">Report</a> &nbsp;
-            <a href="./API.html">API</a> &nbsp;
+            <a href="/home">Home</a> &nbsp;
+            <a href="/report">Report</a> &nbsp;
+            <a href="/API">API</a> &nbsp;
         </div>
-        <div id="header-button-div">
-            <button id="button-style-1" type="button" onclick="alert('Button is working.')">Create Credit Score</button>
-        </div>
+    
     </div>
 
     <div id="home-row">
@@ -32,106 +30,18 @@
                 Nunc ullamcorper ex vitae arcu pharetra, id placerat urna pharetra. 
                 Maecenas id nulla eget urna iaculis posuere.
             </p>
-            <button id="button-style-1" type="button" onclick="alert('Button is working.')">Connect Wallet</button>
-            <button id="button-style-2" type="button" onclick="alert('Button is working.')">Create Credit Score</button>
+       
         </div>
-        <div id="home-col-png">
-            <img id="stacks-1" src="./stacks-1.png" alt="Computer Stacks" width="300" height="300">
-        </div>
+     
     </div>
 
-    <div class="container">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-      
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <div id="home-row">
-            <div id="home-col-png">
-                <img id="safe-1" src="{{url_for('static', filename='media/safe-1.png')}}" alt="Safe" width="300" height="250">
-            </div>
-            <div id="home-col">
-                <h1 id="home-header">Features</h1>
-                <h2 id="home-r2-col-2-h2">01. Secure Credit Score</h2>
-                <p id="home-r2-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Pellentesque pharetra diam arcu, et efficitur quam maximus venenatis. 
-                    Ut a lacus ligula. 
-                </p>
-            </div>
-            </div>
-          </div>
-      
-          <div class="item">
-            <div id="home-row">
-            <div id="home-col">
-                <h1 id="home-header">Features</h1>
-                <h2 id="home-r2-col-2-h2">02. Report Fraud.</h2>
-                <p id="home-p">
-                    Have you seen any suspicious activities with a wallet? Report it to be investigated.
-                </p>
-                <button id="button-style-1" type="button" onclick="location.href='./report.html'">Report Wallet</button>
-            </div>
-            <div id="home-col-png">
-                <img id="report-1" src="./report-1.png" alt="Computer Stacks" width="300" height="250">
-            </div>
-            </div>
-          </div>
-      
-          <div class="item">
-            <div id="home-row">
-            <div id="home-col-png">
-                <img id="API-1" src="./API-1.png" alt="Safe" width="300" height="250">
-            </div>
-            <div id="home-col">
-                <h1 id="home-header">Features</h1>
-                <h2 id="home-r2-col-2-h2">03. Use Our API</h2>
-                <p id="home-r2-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Pellentesque pharetra diam arcu, et efficitur quam maximus venenatis. 
-                    Ut a lacus ligula. 
-                </p>
-                <button id="button-style-1" type="button" onclick="location.href='./API.html'">Get API Key</button>
-            </div>
-          </div>
-          </div>
-        </div>
-      
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-    </div>
-    </div>
-        
-    <!-- <div id="home-row">
-        <div id="home-col-png">
-            <img id="safe-1" src="./safe-1.png" alt="Safe" width="300" height="250">
-        </div>
-        <div id="home-col">
-            <h1 id="home-header">Features</h1>
-            <h2 id="home-r2-col-2-h2">01. Secure Credit Score</h2>
-            <p id="home-r2-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Pellentesque pharetra diam arcu, et efficitur quam maximus venenatis. 
-                Ut a lacus ligula. 
-            </p>
-        </div>
-    </div> -->
+  
 
     <div id="credit-score-div">
         <div>
             <h1>Discover Your Credit Score.</h1>
             <h6>Only input BTC wallet addresses.</h6>
-            <form id="wallet-address-form">
+            <form action="/calculation" method="post" id="wallet-address-form">
                 <label id="form-label">Wallet Address</label>
                 <br><br>
                 <input id="address-input-field" type="text" name="wallet-address"
@@ -153,7 +63,7 @@
             <button id="telegram-button" type="button" onclick="alert('Button is working.')">Join Telegram</button>
         </div>
         <div id="home-col-png">
-            <img id="community-1" src="./community-1.png" alt="Community" width="300" height="250">
+            <img id="community-1" src="{{url_for('static', filename='media/community-1.png')}}" alt="Community" width="300" height="250">
         </div>
     </div>
 

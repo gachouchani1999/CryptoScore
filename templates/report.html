@@ -5,19 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
-    <link rel="stylesheet" href="./design.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 </head>
 <body>
-    <div id="header">
-        <div id="logo">CryptoScore</div>
+    <div id="header_report">
+        
         <div class="navigation">
-            <a href="./home.html">Home</a> &nbsp;
-            <a href="./report.html">Report</a> &nbsp;
-            <a href="./API.html">API</a> &nbsp;
+            <a href="/home">Home</a> &nbsp;
+            <a href="/report">Report</a> &nbsp;
+            <a href="/API">API</a> &nbsp;
         </div>
-        <div id="header-button-div">
-            <button id="button-style-1" type="button" onclick="alert('Button is working.')">Create Credit Score</button>
-        </div>
+    
     </div>
 
     <div id="report-div">
