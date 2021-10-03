@@ -1,4 +1,6 @@
 from typing import Dict
+
+import json
 import tx_scraper
 import exchange_wallets
 from merge_sort import merge_sort
@@ -21,13 +23,13 @@ def create_Graph(
     return Graph
 
 #Testing purposes
-data = tx_scraper.address_scraper('bc1qejavv9dtk63ywt8t99tx6nm4cn9xszge7tagn2')
+'''data = tx_scraper.address_scraper('bc1qejavv9dtk63ywt8t99tx6nm4cn9xszge7tagn2')
 tx_list = tx_scraper.tx_extractor(data)
 
 tx_lst2 = tx_scraper.depth2_list(data,tx_list)
 tx_lst3 = tx_scraper.depth3_list(data,tx_lst2)
 basic_data = tx_scraper.basic_extractor(data)
-g = create_Graph(tx_lst3)
+g = create_Graph(tx_lst3)'''
 
 
 def analysis_criteria(
@@ -48,8 +50,10 @@ def analysis_criteria(
     [7]: Total amount sent/ Total amount received
     """
     analysis_arr = [0,0,0,0,0,0,0,0] #7 criteria
+    with open('Fraud.txt') as f:
+        fraudulent_wallets = json.load(f)
     for sender in g:
-        if sender in exchange_wallets.fraudulent_wallets:
+        if sender in fraudulent_wallets:
             analysis_arr[0] = 1
 
         if sender in exchange_wallets.most_trusted_wallet:
@@ -91,9 +95,11 @@ def analysis_criteria(
             analysis_arr[6] = 1
         elif sum == values[len(values)-2]:
             analysis_arr[6] = 1
-
-    analysis_arr[7] = basic_data[1]/basic_data[0]
+    try:
+        analysis_arr[7] = basic_data[1]/basic_data[0]
+    except:
+        analysis_arr[7] = 0
 
     return analysis_arr
 
-print(analysis_criteria(g,tx_lst3,basic_data))
+

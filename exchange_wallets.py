@@ -2,7 +2,6 @@
 Wallets of trusted exchange platforms (binance,coinbase...)
 '''
 
-
 most_trusted_wallet= ["34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo",
         "bc1qgdjqv0av3q56jvd82tkdjpy7gdp9ut8tlqmgrpmv24sq90ecnvqqjwvw97",
         "37XuVSEpWW4trkfmvWzegTHQt7BdktSKUs",
@@ -21,4 +20,3 @@ most_trusted_wallet= ["34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo",
         "3Nxwenay9Z8Lc9JBiywExpnEFiLp6Afp8v",
         "3Cbq7aT1tY8kMxWLbitaG7yT6bPbKChq64"]
 
-fraudulent_wallets = []

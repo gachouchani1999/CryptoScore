@@ -3,7 +3,7 @@ import random
 import json
 import tx_scraper
 import tx_analyzer
-from csv import writer
+
   
 
   
@@ -29,29 +29,26 @@ sample_pos_addrs = [random.choice(pos_addrs) for i in range(100)]
 
 def prepare_training_negative(addrs :list):
     """Uses random negative addresses to get arrays to feed to Classifier ML Algorithm"""
-    practice_list = []
     for addr in addrs:
-        try:
-            data = tx_scraper.address_scraper(addr)
-        except:
-            pass
+        print("I am in 1")
+        data = tx_scraper.address_scraper(addr)
         basic_data = tx_scraper.basic_extractor(data)
         try:
             tx_list = tx_scraper.tx_extractor(data)
         except:
-            pass
+            continue
         tx_lst2 = tx_scraper.depth2_list(data,tx_list)
         tx_lst3 = tx_scraper.depth3_list(data,tx_lst2)
 
         g = tx_analyzer.create_Graph(tx_lst3)
         practice = tx_analyzer.analysis_criteria(g,tx_lst3,basic_data)
         practice.append(0)
+        print("I am in 2!")
         if practice != [0,0,0,0,0,0,0,0,0]:
-            with open('training.csv', 'a') as f_object:
-                writer_object = writer(f_object)
-                writer_object.writerow(practice)
-                f_object.close()
-    
+            with open('training.csv', 'a') as f:
+                for line in f:
+                    f.write(practice)
+        print("I am h")
     
     
 prepare_training_negative(sample_bad_addrs[:10])
@@ -60,26 +57,26 @@ def prepare_training_positive(addrs :list):
     """Uses random addresses to get arrays to feed to Classifier ML Algorithm"""
     practice_list = []
     for addr in addrs:
-        try:
-            data = tx_scraper.address_scraper(addr)
-        except:
-            pass
+        data = tx_scraper.address_scraper(addr)
+
         basic_data = tx_scraper.basic_extractor(data)
         try:
             tx_list = tx_scraper.tx_extractor(data)
         except:
-            pass
+            continue
         tx_lst2 = tx_scraper.depth2_list(data,tx_list)
         tx_lst3 = tx_scraper.depth3_list(data,tx_lst2)
 
         g = tx_analyzer.create_Graph(tx_lst3)
         practice = tx_analyzer.analysis_criteria(g,tx_lst3,basic_data)
         practice.append(1)
-        if practice != [0,0,0,0,0,0,0,0,1]:
-            with open('training.csv', 'a') as f_object:
-                writer_object = writer(f_object)
-                writer_object.writerow(practice)
-                f_object.close()
+        print("I am here")
+        if practice not in [0,0,0,0,0,0,0,0,1]:
+            with open('training.csv', 'a') as f:
+                for line in f:
+                    f.write(practice)
+                
+                
     
     
     

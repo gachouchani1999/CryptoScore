@@ -7,7 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=21afa05bf02940c595fb7038550cd371'
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=cfc86e02b389431f803961b50fc2ffd2'
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
