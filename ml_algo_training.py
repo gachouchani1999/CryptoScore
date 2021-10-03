@@ -20,12 +20,14 @@ sample_bad_addrs = [random.choice(bad_addrs) for i in range(100)]
 
 with open('legends.txt') as f:
     pos_addrs = f.readlines()
-    for pos_addr in pos_addrs:
-        pos_addr = pos_addr[2:]
+    for i,pos_addr in enumerate(pos_addrs):
+        pos_addrs[i] = pos_addr[pos_addr.find('\t')+1:pos_addr.find('\n')]
+        pos_addrs[i] = pos_addrs[i][:pos_addr.find('\t')]
+
     
 
 sample_pos_addrs = [random.choice(pos_addrs) for i in range(100)]
-
+print(sample_pos_addrs)
 
 def prepare_training_negative(addrs :list):
     """Uses random negative addresses to get arrays to feed to Classifier ML Algorithm"""
@@ -51,7 +53,6 @@ def prepare_training_negative(addrs :list):
         print("I am h")
     
     
-prepare_training_negative(sample_bad_addrs[:10])
 
 def prepare_training_positive(addrs :list):
     """Uses random addresses to get arrays to feed to Classifier ML Algorithm"""
@@ -80,4 +81,4 @@ def prepare_training_positive(addrs :list):
     
     
     
-prepare_training_positive(sample_pos_addrs[:10])
+#prepare_training_positive(sample_pos_addrs[:10])
