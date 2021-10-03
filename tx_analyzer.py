@@ -1,5 +1,7 @@
 from typing import Dict
 import tx_scraper
+import exchange_wallets
+from merge_sort import merge_sort
 
 def create_Graph(
     lst: list, #Hash - Value - Sender - Receiver
@@ -18,20 +20,90 @@ def create_Graph(
             Graph[tx["sender"]] = {tx["receiver"]: 1}
     return Graph
 
-<<<<<<< HEAD
-data = tx_scraper.address_scraper('1Di7HSRy3T8YbczYv4Q8Pr2VbppgZf3iUY')
-=======
+#Testing purposes
 data = tx_scraper.address_scraper('bc1qejavv9dtk63ywt8t99tx6nm4cn9xszge7tagn2')
->>>>>>> 87a112fae331c387cdca067f2c2313edf7cfa221
 tx_list = tx_scraper.tx_extractor(data)
 
 tx_lst2 = tx_scraper.depth2_list(data,tx_list)
 tx_lst3 = tx_scraper.depth3_list(data,tx_lst2)
-
+basic_data = tx_scraper.basic_extractor(data)
 g = create_Graph(tx_lst3)
-print(g)
+
+
+def analysis_criteria(
+    g: Dict,
+    all_txs: list,
+    basic_data : list,
+) -> list:
+    """
+    This function takes as input the directed cyclic graph and creates an array of values that will be fed for the ML algorithm to train.
+    Array Values:
+    [0]: 1 if there is sender in fraudulent wallets/ 0 if not
+    [1]: number of senders in trusted wallets
+    [2]: Returns number of senders in graph
+    [3]: Returns average number of recievers for each sender in graph
+    [4]: Average weight of transactions between senders and receivers
+    [5]: Is there a cycle in blockchain transactions? 1 if YES / 0 if NO
+    [6]: Is there a sum of values sent in the blockchain that sum up to another value?
+    [7]: Total amount sent/ Total amount received
+
+    """
+    analysis_arr = [0,0,0,0,0,0,0,0] #7 criteria
+    for sender in g:
+        if sender in exchange_wallets.fraudulent_wallets:
+            analysis_arr[0] = 1
+
+        if sender in exchange_wallets.most_trusted_wallet:
+            analysis_arr[1] += 1
+        
+
+    analysis_arr[2] = len(g)
+
+    total_receivers = 0
+    for dic in g.values():
+        total_receivers += len(dic)
+
+    analysis_arr[3] = (total_receivers/analysis_arr[2])
+
+    total_weights = 0
+    for receiver in g.values():
+        for value in receiver.values():
+            total_weights += value
+        
+    analysis_arr[4] = (total_weights/analysis_arr[3])
+
+    for sender in g: 
+        for receiver in g.values():
+            if sender in receiver:
+                analysis_arr[5] = 1
+    
+    values = [tx["value"] for tx in all_txs]
+    merge_sort(values)
+    sum = 0
+    #Could Probably enhance function 
+    for value in values:
+        sum += value
+        if sum == values[len(values)-1]:
+            analysis_arr[6] = 1
+        elif sum == values[len(values)-2]:
+            analysis_arr[6] = 1
+
+    analysis_arr[7] = basic_data[1]/basic_data[0]
+
+    return analysis_arr
+
+print(analysis_criteria(g,tx_lst3,basic_data))
+
+    
+
+
+
+
+
+
+
 
 
 
     
-    
+

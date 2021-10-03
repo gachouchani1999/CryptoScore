@@ -7,11 +7,7 @@ def address_scraper(
     """
     Extracts the wallet from the BlockCypher API
     """
-<<<<<<< HEAD
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=ff7b5a8efc0345a0b3a056d2f869128c'
-=======
     url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=dd7ab7e82c07483a897166fb3510396a'
->>>>>>> 87a112fae331c387cdca067f2c2313edf7cfa221
         
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
@@ -64,7 +60,7 @@ def depth2_list(
     all_tx: list,
 ) -> list:
     """
-    Takes as argument the list of transactions from tx_extractor function and returns it recursively with depth 3
+    Takes as argument the list of transactions from tx_extractor function and returns it recursively with depth 2
     """
     
     final_tx = []
