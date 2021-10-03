@@ -23,5 +23,7 @@ def API_page():
 @app.route('/calculation', methods=['GET', 'POST'])
 def calculate_score():
    return render_template('home.html')
+
+
 if __name__ == '__main__':
    app.run()

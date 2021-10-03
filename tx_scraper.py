@@ -1,14 +1,17 @@
 from typing import Dict
 import urllib.request, json
 import time
+import requests
+
 def address_scraper(
     crypto_addr,
 ) -> Dict:
     """
     Extracts the wallet from the BlockCypher API
     """
-    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=10&token=7dbe2b04f8d245d0a612d2ce1e835328'
-        
+    
+    url = "https://api.blockcypher.com/v1/btc/main/addrs/" +crypto_addr + '/full?limit=3&token=2704e95eb6e0492e843b77b3e1200928'
+    requests.get(url, headers = {'User-agent': 'your bot 0.1'})  
     response = urllib.request.urlopen(url)
     data = json.loads(response.read())  
     return data
